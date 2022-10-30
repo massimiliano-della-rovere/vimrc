@@ -1,3 +1,5 @@
+" https://github.com/massimiliano-della-rovere/vimrc/edit/main/vimrc
+
 " GENERAL {{{
 " set cmdheight=4
 set nocompatible " enable vim new functions, making it "NO COMPATIBLE" with vi
