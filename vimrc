@@ -553,17 +553,6 @@ augroup END
     nnoremap Y y$
 " }}}
 
-" PACKAGES {{{
-" load all plugins now
-" plugins need to be added to runtimepath before helptags can be generated
-packloadall
-" load all of the helptags now, after plugins have been loaded
-" all messages and errors will be ignored
-silent! helptags all
-
-let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
-" }}}
-
 " COLORSCHEME: gruvbox8 - lifepillar/vim-gruvbox8 {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/lifepillar/vim-gruvbox8 ~
@@ -630,6 +619,12 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " ~ https://github.com/tpope/vim-surround ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~
+" }}}
+
+" tpope/vim-vinegar {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-vinegar ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
 " ycm-core/YouCompleteMe {{{
@@ -760,3 +755,15 @@ let g:user_emmet_leader_key='<C-Z>'
 " ~ https://github.com/kshenoy/vim-signature ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
+
+" PACKAGES {{{
+" load all plugins now
+" plugins need to be added to runtimepath before helptags can be generated
+packloadall
+" load all of the helptags now, after plugins have been loaded
+" all messages and errors will be ignored
+silent! helptags ++t all
+
+let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
+" }}}
+
