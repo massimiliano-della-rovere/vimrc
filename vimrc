@@ -200,23 +200,26 @@ set splitbelow
 " }}}
 
 " TABS {{{
-nnoremap <expr> <C-Space>e printf(":tabedit %s\n", v:count1)
-nnoremap <C-Space>f <C-W>gF
-nnoremap <expr> <C-Space>c printf(":tabclose %s\n", v:count1)
-nnoremap <expr> <C-Space>o printf(":tabonly %s\n", v:count1)
-nnoremap <expr> <C-Space>h printf(":tabprevious %s\n", v:count1)
-nnoremap <expr> <C-Space>l printf(":tabnext %s\n", v:count1)
-nnoremap <expr> <C-Space><Left> printf(":tabprevious %s\n", v:count1)
-nnoremap <expr> <C-Space><Right> printf(":tabnext %s\n", v:count1)
+" <NUL> means <C-Space>
+nnoremap <expr> <NUL>e printf(":tabedit %s\n", v:count1)
+nnoremap <expr> <NUL>n printf(":tabnew %s\n", v:count1)
+nnoremap <NUL>f <C-W>gF
+nnoremap <expr> <NUL>c printf(":tabclose %s\n", v:count1)
+nnoremap <expr> <NUL>o printf(":tabonly %s\n", v:count1)
+nnoremap <expr> <NUL>h printf(":tabprevious %s\n", v:count1)
+nnoremap <expr> <NUL>l printf(":tabnext %s\n", v:count1)
+nnoremap <expr> <NUL><Space> printf(":tabnext %s\n", v:count1)
+nnoremap <expr> <NUL><NUL> printf(":tabprevious %s\n", v:count1)
+nnoremap <expr> <NUL><Left> printf(":tabprevious %s\n", v:count1)
+nnoremap <expr> <NUL><Right> printf(":tabnext %s\n", v:count1)
 nnoremap <expr> <C-Left> printf(":tabprevious %s\n", v:count1)
 nnoremap <expr> <C-Right> printf(":tabnext %s\n", v:count1)
-nnoremap <C-Space><Home> :tabfirst<CR>
-nnoremap <C-Space><End> :tablast<CR>
-nnoremap <C-Space><Space> :tabs<CR>
-nnoremap <C-Space><C-Space> :tabs<CR>
-nnoremap <expr> <C-Space>m printf(":tabmove %s\n", v:count1)
-nnoremap <expr> <C-Space>- printf(":tabmove -%s\n", v:count1)
-nnoremap <expr> <C-Space>+ printf(":tabmove +%s\n", v:count1)
+nnoremap <NUL><Home> :tabfirst<CR>
+nnoremap <NUL><End> :tablast<CR>
+nnoremap <NUL>t :tabs<CR>
+nnoremap <expr> <NUL>m printf(":tabmove %s\n", v:count1)
+nnoremap <expr> <NUL>- printf(":tabmove -%s\n", v:count1)
+nnoremap <expr> <NUL>+ printf(":tabmove +%s\n", v:count1)
 " }}}
 
 " INSERT MODE {{{
@@ -612,3 +615,4 @@ silent! helptags ++t all
 
 let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
 " }}}
+
