@@ -383,9 +383,9 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " }}}
 
 " mcsween/indent_python {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://www.vim.org/scripts/script.php?script_id=974 ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/vim-scripts/indentpython.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
 " tpope/vim-dadbod {{{
@@ -409,9 +409,9 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " }}}
 
 " ycm-core/YouCompleteMe {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/ycm-core/YouCompleteMe#python-semantic-completion ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/ycm-core/YouCompleteMe ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " create .ycm_extra_conf.py file at the root of your project with the following contents:
 
 " def Settings(**kwargs):
@@ -538,6 +538,7 @@ let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
 " ######################################
 " # https://github.com/mattn/emmet-vim #
 " ######################################
+" https://raw.githubusercontent.com/mattn/emmet-vim/master/TUTORIAL
 let g:user_emmet_leader_key='<C-Z>'
 " }}}
 
@@ -605,6 +606,21 @@ let g:airline#extensions#tabline#show_tabs = 1
 " let g:airline_theme='<theme>'
 " }}}
 
+" airblade/vimgitgutter {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/airblade/vim-gitgutter ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set signcolumn=yes
+let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_set_sign_backgrounds = 1
+" let g:gitgutter_sign_added = 'xx'
+" let g:gitgutter_sign_modified = 'yy'
+" let g:gitgutter_sign_removed = 'zz'
+" let g:gitgutter_sign_removed_first_line = '^^'
+" let g:gitgutter_sign_removed_above_and_below = '{'
+" let g:gitgutter_sign_modified_removed = 'ww'
+" }}}
+
 " PACKAGES {{{
 " load all plugins now
 " plugins need to be added to runtimepath before helptags can be generated
@@ -615,4 +631,3 @@ silent! helptags ++t all
 
 let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
 " }}}
-
