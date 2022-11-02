@@ -621,6 +621,12 @@ let g:gitgutter_set_sign_backgrounds = 1
 " let g:gitgutter_sign_modified_removed = 'ww'
 " }}}
 
+" bling/vim-bufferline {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/bling/vim-bufferline ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
 " PACKAGES {{{
 " load all plugins now
 " plugins need to be added to runtimepath before helptags can be generated
