@@ -37,6 +37,9 @@ mkdir -p $plugin_dir/start/vim-scripts
 git clone $github/vim-scripts/taglist.vim.git $plugin_dir/start/vim-scripts/taglist.vim
 
 mkdir -p $plugin_dir/start/tpope
+git clone $github/tpope/vim-commentary.git $plugin_dir/start/tpope/vim-commentary
+
+mkdir -p $plugin_dir/start/tpope
 git clone $github/tpope/vim-characterize.git $plugin_dir/start/tpope/vim-characterize
 
 mkdir -p $plugin_dir/start/tpope
