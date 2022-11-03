@@ -388,6 +388,26 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
+" tpope/vim-characterize {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-characterize ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" tpope/vim-commentary {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-commentary ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~
+ " }}}
+
+" tpope/vim-dotenv {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-dotenv ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~
+" }}}
+"
 " tpope/vim-dadbod {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/tpope/vim-dadbod ~
@@ -637,3 +657,4 @@ silent! helptags ++t all
 
 let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
 " }}}
+
