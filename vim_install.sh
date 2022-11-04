@@ -59,6 +59,7 @@ mkdir -p $plugin_dir/start/ycm-core
 git clone $github/ycm-core/YouCompleteMe.git $plugin_dir/start/ycm-core/YouCompleteMe
 pushd
 cd $plugin_dir/start/ycm-core/YouCompleteMe
+git submodule update --init --recursive
 python3 install.py --all
 popd
 
