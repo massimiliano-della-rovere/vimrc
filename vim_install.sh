@@ -12,6 +12,9 @@ sudo apt-get install --assume-yes \
 
 mkdir -p $plugin_dir
 
+mkdir -p "$HOME/.vim"
+git clone "${github}/vim-scripts/xoria256.vim/tree/master/colors" "$HOME/.vim/colors"
+
 mkdir -p $plugin_dir/start/lifepillar
 git clone $github/lifepillar/vim-gruvbox8.git $plugin_dir/start/lifepillar/vim-gruvbox8
 
