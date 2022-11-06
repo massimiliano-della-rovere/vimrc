@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 github="https://github.com"
-pack_dir="~/.vim/pack"
+pack_dir="$HOME/.vim/pack"
 plugin_dir="$pack_dir/git_plugins"
 
 sudo apt-get install --assume-yes \
