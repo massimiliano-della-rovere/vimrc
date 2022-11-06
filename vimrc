@@ -16,7 +16,7 @@ filetype indent on " enable the INDENT setting for the current FILETYPE
 if &t_Co > 1
 	syntax on " enable SYNTAX highlightning
 endif
-packadd! matchit
+" packadd! matchit
 " }}}
 
 " HARDCOPY/PRINT {{{
@@ -338,6 +338,12 @@ augroup END
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/lifepillar/vim-gruvbox8 ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" adelarsq/vim-matchit {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/adelarsq/vim-matchit ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
 " ggreer/the_silver_searcher {{{
