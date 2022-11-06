@@ -144,7 +144,7 @@ augroup tab_python
 	autocmd BufNewFile,BufRead *.py set softtabstop=4 " how may spaces are insert when <Tab> is pressed
 	autocmd BufNewFile,BufRead *.py set tabstop=4 " number of spaces that a <Tab> in the file counts for
 	packadd! SimpylFold
-	packadd! indent_python
+	packadd! indentpython.vim
 	let python_highlight_all=1
 	" python with virtualenv support
 	python3 << EOF
