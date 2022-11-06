@@ -18,6 +18,9 @@ git clone "${github}/vim-scripts/xoria256.vim/tree/master/colors" "$HOME/.vim/co
 mkdir -p $plugin_dir/start/rafi
 git clone "${github}/rafi/awesome-vim-colorschemes.git" $plugin_dir/start/rafi/awesome-vim-colorschemes
 
+mkdir -p $plugin_dir/start/adelarsq
+git clone "${github}/adelarsq/vim-matchit.git" $plugin_dir/start/adelarsq/vim-matchit
+
 mkdir -p $plugin_dir/start/lifepillar
 git clone $github/lifepillar/vim-gruvbox8.git $plugin_dir/start/lifepillar/vim-gruvbox8
 
