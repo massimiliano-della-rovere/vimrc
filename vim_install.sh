@@ -91,7 +91,7 @@ mkdir -p "$plugin_dir/start/Konfekt"
 git clone "$github/Konfekt/FastFold.git" "$plugin_dir/start/Konfekt/FastFold"
 
 mkdir -p "$plugin_dir/start/tmhedberg"
-git clone "$github/tmhedberg/SimplyFold.git" "$plugin_dir/start/tmhedberg/SimplyFold"
+git clone "$github/tmhedberg/SimpylFold.git" "$plugin_dir/start/tmhedberg/SimpylFold"
 
 mkdir -p "$plugin_dir/start/valloric"
 git clone "$github/valloric/MatchTagAlways.git" "$plugin_dir/start/valloric/MatchTagAlways"
