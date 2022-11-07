@@ -79,7 +79,7 @@ mkdir -p "$plugin_dir/start/preservim"
 git clone "$github/preservim/nerdtree.git" "$plugin_dir/start/preservim/nerdtree"
 
 mkdir -p "$plugin_dir/start/Xyuyanp"
-git clone "$github/Xyuyanp/nerdtree-git-plugin.git" "$plugin_dir/start/Xyuyanp/nerdtree-git-plugin"
+git clone "$github/Xuyuanp/nerdtree-git-plugin.git" "$plugin_dir/start/Xuyuanp/nerdtree-git-plugin"
 
 mkdir -p "$plugin_dir/start/ryanoasis"
 git clone "$github/ryanoasis/vim-devicons.git" "$plugin_dir/start/ryanoasis/vim-devicons"
