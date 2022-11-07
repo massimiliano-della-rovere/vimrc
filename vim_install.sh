@@ -10,7 +10,7 @@ sudo apt-get install --assume-yes \
 	vim-runtime vim-scripts \
 	vim-doc
 
-mkdir -p $plugin_dir
+mkdir -p "$plugin_dir"
 
 mkdir -p "$HOME/.vim"
 git clone "${github}/vim-scripts/xoria256.vim/tree/master/colors" "$HOME/.vim/colors"
@@ -48,8 +48,8 @@ git clone "$github/vim-scripts/taglist.vim.git" "$plugin_dir/start/vim-scripts/t
 mkdir -p "$plugin_dir/start/tpope"
 git clone "$github/tpope/vim-commentary.git" "$plugin_dir/start/tpope/vim-commentary"
 
-mkdir -p $plugin_dir/start/tpope
-git clone $github/tpope/vim-characterize.git $plugin_dir/start/tpope/vim-characterize
+mkdir -p "$plugin_dir/start/tpope"
+git clone "$github/tpope/vim-characterize.git" "$plugin_dir/start/tpope/vim-characterize"
 
 mkdir -p "$plugin_dir/start/tpope"
 git clone "$github/tpope/vim-dotenv.git" "$plugin_dir/start/tpope/vim-dotenv"
