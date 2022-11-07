@@ -63,7 +63,7 @@ git clone "$github/tpope/vim-surround.git" "$plugin_dir/start/tpope/vim-surround
 mkdir -p "$plugin_dir/start/tpope"
 git clone "$github/tpope/vim-vinegar.git" "$plugin_dir/start/tpope/vim-vinegar"
 
-sudo apt install --assume-yes build-essential cmake python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
+sudo apt install --assume-yes build-essential cmake python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm universal-ctags
 mkdir -p "$plugin_dir/start/ycm-core"
 git clone "$github/ycm-core/YouCompleteMe.git" "$plugin_dir/start/ycm-core/YouCompleteMe"
 pushd
