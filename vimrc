@@ -477,6 +477,10 @@ let g:sandwich#recipes += [
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " activate the :Farundo command
 let g:far#enable_undo=1
+" source for files
+let g:far#source='rg'
+" glob mode to use
+let g:far#glob_mode='rg'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/ggreer/the_silver_searcher ~
