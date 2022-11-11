@@ -73,6 +73,16 @@ git clone https://github.com/BurntSushi/ripgrep
 
 git clone https://github.com/junegunn/fzf
 
+sudo apt install cargo
+cargo install devicon-lookup --force
+[ -n "`grep 'PATH="$HOME/.cargo/bin:$PATH"' $HOME/.profile`" ] && cat << EOS >> $HOME/.profile
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+EOS
+
+git clone https://github.com/coreyja/fzf.devicon.vim
+
 git clone https://github.com/junegunn/fzf.vim
 
 git clone https://github.com/tpope/vim-vinegar
