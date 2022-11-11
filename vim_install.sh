@@ -58,8 +58,10 @@ git clone https://github.com/roman/golden-ratio
 
 git clone https://github.com/brooth/far.vim
 
+sudo apt install silversearcher-ag
 git clone https://github.com/ggreer/the_silver_searcher
 
+sudo apt install ripgrep
 git clone https://github.com/BurntSushi/ripgrep
 
 git clone https://github.com/junegunn/fzf
@@ -86,8 +88,8 @@ git clone https://github.com/tpope/vim-commentary
 
 git clone https://github.com/dense-analysis/ale
 
-git clone https://github.com/ycm-core/YouCompleteMe
 sudo apt install --assume-yes build-essential cmake python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm universal-ctags
+git clone https://github.com/ycm-core/YouCompleteMe
 cd YouCompleteMe
 git submodule update --init --recursive
 python3 install.py --all
