@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-# grep -P '^~ https://github.com/' ~/.vim/vimrc | sed 's/["~ ]//g'
-#
-
-github="https://github.com"
-
-pack_dir="$HOME/.vim/pack"
-plugin_dir="$pack_dir/git-plugins"
-
-
 sudo apt-get install --assume-yes \
 	vim-common vim-nox \
 	vim-gui-common vim-gtk vim-gtk3 \
 	vim-runtime vim-scripts \
 	vim-doc
+
+# grep -P '^~ https://github.com/' ~/.vim/vimrc | sed 's/["~ ]//g'
+
+pack_dir="${HOME}/.vim/pack"
+plugin_dir="${pack_dir}/git-plugins"
 
 mkdir -p "${plugin_dir}"
 cd "${plugin_dir}"
