@@ -11,7 +11,7 @@ sudo apt-get install --assume-yes \
 vim_dir="${HOME}/.vim"
 color_dir="${vim_dir}/colors"
 pack_dir="${vim_dir}/pack"
-plugin_dir="${pack_dir}/git-plugins"
+plugin_dir="${pack_dir}/git-plugins/start"
 
 mkdir -p "${color_dir}"
 cd "${color_dir}"
