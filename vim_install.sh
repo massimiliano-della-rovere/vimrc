@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+# grep -P '^~ https://github.com/' ~/.vim/vimrc | sed 's/["~ ]//g'
+#
+
 github="https://github.com"
+
 pack_dir="$HOME/.vim/pack"
-plugin_dir="$pack_dir/git_plugins"
+plugin_dir="$pack_dir/git-plugins"
+
 
 sudo apt-get install --assume-yes \
 	vim-common vim-nox \
@@ -10,107 +15,107 @@ sudo apt-get install --assume-yes \
 	vim-runtime vim-scripts \
 	vim-doc
 
-mkdir -p "$plugin_dir"
+mkdir -p "${plugin_dir}"
+cd "${plugin_dir}"
 
-mkdir -p "$HOME/.vim"
-git clone "${github}/vim-scripts/xoria256.vim/tree/master/colors" "$HOME/.vim/colors"
+git clone https://github.com/lifepillar/vim-gruvbox8
 
-mkdir -p "$plugin_dir/start/rafi"
-git clone "${github}/rafi/awesome-vim-colorschemes.git" "$plugin_dir/start/rafi/awesome-vim-colorschemes"
+git clone https://github.com/rafi/awesome-vim-colorschemes
 
-mkdir -p "$plugin_dir/start/adelarsq"
-git clone "${github}/adelarsq/vim-matchit.git" "$plugin_dir/start/adelarsq/vim-matchit"
+git clone https://github.com/ryanoasis/vim-devicons
 
-mkdir -p "$plugin_dir/start/lifepillar"
-git clone "$github/lifepillar/vim-gruvbox8.git" "$plugin_dir/start/lifepillar/vim-gruvbox8"
+git clone https://github.com/vim-airline/vim-airline
 
-mkdir -p "$plugin_dir/start/ggreer"
-git clone "$github/ggreer/the_silver_searcher.git" "$plugin_dir/start/ggreer/the_silver_searcher"
+git clone https://github.com/vim-airline/vim-airline-themes
 
-mkdir -p "$plugin_dir/start/BurntSushi"
-git clone "$github/BurntSushi/ripgrep.git" "$plugin_dir/start/BurntSushi/ripgrep"
+git clone https://github.com/tpope/vim-dotenv
 
-mkdir -p "$plugin_dir/start/ekalinin"
-git clone "$github/ekalinin/Dockerfile.vim.git" "$plugin_dir/start/ekalinin/Dockerfile.vim"
+git clone https://github.com/junegunn/vim-peekaboo
 
-mkdir -p "$plugin_dir/start/junegunn"
-git clone "$github/junegunn/fzf.git" "$plugin_dir/start/junegunn/fzf"
+git clone https://github.com/mg979/vim-visual-multi
 
-mkdir -p "$plugin_dir/start/junegunn"
-git clone "$github/junegunn/fzf.vim.git" "$plugin_dir/start/junegunn/fzf.vim"
+git clone https://github.com/dhruvasagar/vim-open-url
 
-mkdir -p "$plugin_dir/start/vim-scripts"
-git clone "$github/vim-scripts/indentpython.vim.git" "$plugin_dir/start/vim-scripts/indentpython.vim"
+git clone https://github.com/tpope/vim-repeat
 
-mkdir -p "$plugin_dir/start/vim-scripts"
-git clone "$github/vim-scripts/taglist.vim.git" "$plugin_dir/start/vim-scripts/taglist.vim"
+git clone https://github.com/edkolev/promptline.vim
 
-mkdir -p "$plugin_dir/start/tpope"
-git clone "$github/tpope/vim-commentary.git" "$plugin_dir/start/tpope/vim-commentary"
+git clone https://github.com/christoomey/vim-tmux-navigator
 
-mkdir -p "$plugin_dir/start/tpope"
-git clone "$github/tpope/vim-characterize.git" "$plugin_dir/start/tpope/vim-characterize"
+git clone https://github.com/edkolev/tmuxline.vim
 
-mkdir -p "$plugin_dir/start/tpope"
-git clone "$github/tpope/vim-dotenv.git" "$plugin_dir/start/tpope/vim-dotenv"
+git clone https://github.com/Konfekt/FastFold
 
-mkdir -p "$plugin_dir/start/tpope"
-git clone "$github/tpope/vim-dadbod.git" "$plugin_dir/start/tpope/vim-dadbod"
+git clone https://github.com/tmhedberg/SimpylFold
 
-mkdir -p "$plugin_dir/start/tpope"
-git clone "$github/tpope/vim-surround.git" "$plugin_dir/start/tpope/vim-surround"
+git clone https://github.com/kshenoy/vim-signature
 
-mkdir -p "$plugin_dir/start/tpope"
-git clone "$github/tpope/vim-vinegar.git" "$plugin_dir/start/tpope/vim-vinegar"
+git clone https://github.com/andymass/vim-matchup
 
+git clone https://github.com/valloric/MatchTagAlways
+
+git clone https://github.com/wellle/targets.vim
+
+git clone https://github.com/machakann/vim-sandwich
+
+git clone https://github.com/roman/golden-ratio
+
+git clone https://github.com/brooth/far.vim
+
+git clone https://github.com/ggreer/the_silver_searcher
+
+git clone https://github.com/BurntSushi/ripgrep
+
+git clone https://github.com/junegunn/fzf
+
+git clone https://github.com/junegunn/fzf.vim
+
+git clone https://github.com/tpope/vim-vinegar
+
+git clone https://github.com/preservim/nerdtree
+
+git clone https://github.com/Xuyuanp/nerdtree-git-plugin
+
+git clone https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+
+git clone https://github.com/tpope/vim-characterize
+
+git clone https://github.com/ludovicchabant/vim-gutentags
+
+git clone https://github.com/vim-scripts/taglist.vim
+
+git clone https://github.com/tpope/vim-endwise
+
+git clone https://github.com/tpope/vim-commentary
+
+git clone https://github.com/dense-analysis/ale
+
+git clone https://github.com/ycm-core/YouCompleteMe
 sudo apt install --assume-yes build-essential cmake python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm universal-ctags
-mkdir -p "$plugin_dir/start/ycm-core"
-git clone "$github/ycm-core/YouCompleteMe.git" "$plugin_dir/start/ycm-core/YouCompleteMe"
-pushd
-cd "$plugin_dir/start/ycm-core/YouCompleteMe"
+cd YouCompleteMe
 git submodule update --init --recursive
 python3 install.py --all
-popd
+cd ..
 
-mkdir -p "$plugin_dir/start/dense-analysis"
-git clone "$github/dense-analysis/ale.git" "$plugin_dir/start/dense-analysis/ale"
+git clone https://github.com/othree/csscomplete.vim
 
-mkdir -p "$plugin_dir/start/preservim"
-git clone "$github/preservim/nerdtree.git" "$plugin_dir/start/preservim/nerdtree"
+git clone https://github.com/hail2u/vim-css3-syntax
 
-mkdir -p "$plugin_dir/start/Xyuyanp"
-git clone "$github/Xuyuanp/nerdtree-git-plugin.git" "$plugin_dir/start/Xuyuanp/nerdtree-git-plugin"
+git clone https://github.com/ekalinin/Dockerfile.vim
 
-mkdir -p "$plugin_dir/start/ryanoasis"
-git clone "$github/ryanoasis/vim-devicons.git" "$plugin_dir/start/ryanoasis/vim-devicons"
+git clone https://github.com/vim-scripts/indentpython.vim
 
-mkdir -p "$plugin_dir/start/tiagofumo"
-git clone "$github/tiagofumo/vim-nerdtree-syntax-highlight.git" "$plugin_dir/start/tiagofumo/vim-nerdtree-syntax-highlight"
+git clone https://github.com/jmcantrell/vim-virtualenv
 
-mkdir -p "$plugin_dir/start/Konfekt"
-git clone "$github/Konfekt/FastFold.git" "$plugin_dir/start/Konfekt/FastFold"
+git clone https://github.com/mattn/emmet-vim
 
-mkdir -p "$plugin_dir/start/tmhedberg"
-git clone "$github/tmhedberg/SimpylFold.git" "$plugin_dir/start/tmhedberg/SimpylFold"
+git clone https://github.com/tpope/vim-dadbod
 
-mkdir -p "$plugin_dir/start/valloric"
-git clone "$github/valloric/MatchTagAlways.git" "$plugin_dir/start/valloric/MatchTagAlways"
+git clone https://github.com/lifepillar/pgsql.vim
 
-mkdir -p "$plugin_dir/start/mattn"
-git clone "$github/mattn/emmet-vim.git" "$plugin_dir/start/mattn/emmet-vim"
+git clone https://github.com/airblade/vim-gitgutter
 
-mkdir -p "$plugin_dir/start/kshenoy"
-git clone "$github/kshenoy/vim-signature.git" "$plugin_dir/start/kshenoy/vim-signature"
+git clone https://github.com/tpope/vim-fugitive
 
-mkdir -p "$plugin_dir/start/vim-airline"
-git clone "$github/vim-airline/vim-airline.git" "$plugin_dir/start/vim-airline/vim-airline"
-
-mkdir -p "$plugin_dir/start/vim-airline"
-git clone "$github/vim-airline/vim-airline-themes.git" "$plugin_dir/start/vim-airline/vim-airline-themes"
-
-mkdir -p "$plugin_dir/start/airblade"
-git clone "$github/airblade/vim-gitgutter.git" "$plugin_dir/start/airblade/vim-gitgutter"
-
-mkdir -p "$plugin_dir/start/bling"
-git clone "$github/bling/vim-bufferline.git" "$plugin_dir/start/bling/vim-bufferline"
+git clone https://github.com/junegunn/gv.vim
 
