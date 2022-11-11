@@ -9,7 +9,7 @@ sudo apt-get install --assume-yes \
 # grep -P '^~ https://github.com/' ~/.vim/vimrc | sed 's/["~ ]//g'
 
 vim_dir="${HOME}/.vim"
-color_dir="${pack_dir}/colors"
+color_dir="${vim_dir}/colors"
 pack_dir="${vim_dir}/pack"
 plugin_dir="${pack_dir}/git-plugins"
 
