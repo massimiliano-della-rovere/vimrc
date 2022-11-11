@@ -475,6 +475,8 @@ let g:sandwich#recipes += [
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/brooth/far.vim ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" activate the :Farundo command
+let g:far#enable_undo=1
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/ggreer/the_silver_searcher ~
