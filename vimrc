@@ -2,11 +2,13 @@
 
 " GENERAL {{{
 " set cmdheight=4
-set nocompatible " enable vim new functions, making it "NO COMPATIBLE" with vi
+set nocompatible " enable vim new functions, making it 'NO COMPATIBLE' with vi
 set history=1000 " history of :commands and search patters
 if has('mouse')
 	set mouse=a " use all mouse functions
 endif
+" if there is a git root, keep that as cwd
+" autocmd BufEnter * Gcd
 " }}}
 
 " SYNTAX {{{
@@ -64,9 +66,11 @@ set showmode " SHOW the MODE we are on
 " }}}
 
 " BUFFERS {{{
-set autochdir " the current DIR in the OS is AUTO CHanged to match the current window's buffer
+" set autochdir " the current DIR in the OS is AUTO CHanged to match the current window's buffer
 set hidden " HIDDEN (:hide) buffers won't be unloaded
 " set noswapfile " don't create a backup .swp file
+nnoremap <M-Left> :bprevious<CR>
+nnoremap <M-Right> :bnext<CR>
 " }}}
 
 " ENCODING & FILESYSTEM {{{
@@ -116,10 +120,12 @@ set whichwrap=b,s ",<,>,[,] " WHICH right/left keys may move to the next/prev WR
 
 " FOLDING {{{
 set foldlevel=0 " FOLDS with a higher LEVEL will be closed.
+" set foldtext=gitgutter#fold#is_changed()
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker " FOLDing METHOD (logic)
 augroup END
+nnoremap <space> za
 " }}}
 
 " EXTRA SPACES {{{
@@ -134,17 +140,18 @@ augroup END
 	set shiftround " SHIFT commands will ROUND indent to multiple of 'shiftwidth'
 	set smartindent " try to SMARTly detect when and where to INDENT new text
 	set smarttab " when on, a <Tab> in front of a line inserts blanks according to 'shiftwidth
-                 " when off, a <Tab> always inserts blanks according to 'tabstop' or 'softtabstop'
+			" when off, a <Tab> always inserts blanks according to 'tabstop' or 'softtabstop'
 
 augroup tab_python
 	autocmd!
+	autocmd BufNewFile,BufRead *.py set colorcolumn=80 " draw a vertical line to visualize textwidth
 	autocmd BufNewFile,BufRead *.py set textwidth=80 " linewidth is 80 chars, we respect you PEP8
 	autocmd BufNewFile,BufRead *.py set expandtab " EXPAND TABs into spaces
 	autocmd BufNewFile,BufRead *.py set shiftwidth=4 " SHIFT commands WIDTH in columns
 	autocmd BufNewFile,BufRead *.py set softtabstop=4 " how may spaces are insert when <Tab> is pressed
 	autocmd BufNewFile,BufRead *.py set tabstop=4 " number of spaces that a <Tab> in the file counts for
-	packadd! SimpylFold
-	packadd! indentpython.vim
+" 	packadd! SimpylFold
+" 	packadd! indentpython.vim
 	let python_highlight_all=1
 	" python with virtualenv support
 	python3 << EOF
@@ -172,7 +179,7 @@ set ignorecase " IGNORE the CASE of search patterns
 set incsearch " search INCrementally while the user is typing
 set list " LIST mode: show tabs and eol ($)
 set listchars=eol:$,tab:‹·›,trail:·,extends:›,precedes:‹,nbsp:×
-set showbreak=+++ 
+set showbreak=⮎ " ⤷ " +++ 
 set smartcase " SMART search: if the search pattern contains upperCASE letters, the search becomes case sensitive
 nnoremap n nzz
 nnoremap N Nzz
@@ -248,17 +255,284 @@ augroup END
 abbr @@ massimiliano.dellarovere@gmail.com
 " }}}
 
-" NetRW {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/ ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" PACKAGES: configuration {{{
+" PACKAGES: colors {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/lifepillar/vim-gruvbox8 ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/rafi/awesome-vim-colorschemes ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" }}}
+
+" PACKAGES: interface and popups {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/ryanoasis/vim-devicons ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/vim-airline/vim-airline ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" unicode symbols
+let g:airline#extensions#tabline#left_sep = '»'
+let g:airline#extensions#tabline#left_sep = '▶'
+let g:airline#extensions#tabline#right_sep = '«'
+let g:airline#extensions#tabline#right_sep = '◀'
+
+" airline symbols
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 1
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/vim-airline/vim-airline-themes ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" let g:airline_theme='<theme>'
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-dotenv ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/junegunn/vim-peekaboo ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: misc {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/mg979/vim-visual-multi ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/dhruvasagar/vim-open-url ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-repeat ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/edkolev/promptline.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/christoomey/vim-tmux-navigator ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" https://www.rockyourcode.com/make-vim-work-with-tmux/
+" TMUX
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/edkolev/tmuxline.vim ~ mi serve?
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: folding {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/Konfekt/FastFold ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tmhedberg/SimpylFold ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: marks {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/kshenoy/vim-signature ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: text objects and matching {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/andymass/vim-matchup ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/valloric/MatchTagAlways ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/wellle/targets.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/machakann/vim-sandwich ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" this replaces https://github.com/tpope/surround-vim
+" and partly overlaps with https://github.com/mattn/emmet-vim
+
+" use vim-surround mappings
+" runtime macros/sandwich/keymap/surround.vim
+
+" if you have not copied default recipes
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+
+" add spaces inside bracket like in tpope's vim-surround
+let g:sandwich#recipes += [
+	\ {
+	\    'buns': ['{ ', ' }'],
+	\    'nesting': 1,
+	\    'match_syntax': 1,
+	\    'kind': ['add', 'replace'],
+	\    'action': ['add'],
+	\    'input': ['{']
+	\ },
+	\ {
+	\    'buns': ['[ ', ' ]'],
+	\    'nesting': 1,
+	\    'match_syntax': 1,
+	\    'kind': ['add', 'replace'],
+	\    'action': ['add'],
+	\    'input': ['[']
+	\ },
+	\ {
+	\    'buns': ['( ', ' )'],
+	\    'nesting': 1,
+	\    'match_syntax': 1,
+	\    'kind': ['add', 'replace'],
+	\    'action': ['add'], 'input': ['(']
+	\ },
+	\ {
+	\    'buns': ['{\s*', '\s*}'],
+	\    'nesting': 1,
+	\    'regex': 1,
+	\    'match_syntax': 1,
+	\    'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'],
+	\    'input': ['{']
+	\ },
+	\ {
+	\    'buns': ['\[\s*', '\s*\]'], 
+	\    'nesting': 1,
+	\    'regex': 1,
+	\    'match_syntax': 1,
+	\    'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'],
+	\    'input': ['[']
+	\ },
+	\ {
+	\    'buns': ['(\s*', '\s*)'],
+	\    'nesting': 1,
+	\    'regex': 1,
+	\    'match_syntax': 1,
+	\    'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'],
+	\    'input': ['(']
+	\ },
+	\ ]
+" }}}
+
+" PACKAGES: window {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/roman/golden-ratio ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: find, replace, grep {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/brooth/far.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/ggreer/the_silver_searcher ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/BurntSushi/ripgrep ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/junegunn/fzf ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/junegunn/fzf.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+" let g:fzf_tags_command = 'ctags -R --language-all'
+" see ~/.ctags
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+" }}}
+
+" PACKAGES: netrw & nerdtree {{{
+" ~~~~~~~~~
+" ~ NetRW ~
+" ~~~~~~~~~
+" https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
 let g:netrw_keepdir = 0
 let g:netrw_winsize = 25
 let g:netrw_banner = 0
+" ignore files starting with .
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_localcopydircmd = 'cp -r'
+" Set the default listing style:
+" = 0: thin listing (one file per line)
+" = 1: long listing (one file per line with timestamp information and file size)
+" = 2: wide listing (multiple files in columns)
+" = 3: tree style listing
 let g:netrw_liststyle = 3
+" when browsing, <cr> will open the file by:
+" =0: re-using the same window  (default)
+" =1: horizontally splitting the window first
+" =2: vertically   splitting the window first
+" =3: open file in new tab
+" =4: act like 'P' (ie. open previous window)
+"     Note that |g:netrw_preview| may be used
+"     to get vertical splitting instead of
+"     horizontal splitting.
 let g:netrw_browse_split = 4
+" change from left splitting to right splitting
 let g:netrw_altv = 1
 
 highlight! link netrwMarkFile Search
@@ -327,126 +601,54 @@ augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
 augroup END
-" }}}
 
-" MAP {{{
-    nnoremap <space> za
-    nnoremap Y y$
-" }}}
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-vinegar ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
+let NERDTreeHijackNetrw=1
 
-" COLORSCHEME: gruvbox8 - lifepillar/vim-gruvbox8 {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/lifepillar/vim-gruvbox8 ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" adelarsq/vim-matchit {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/adelarsq/vim-matchit ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" ggreer/the_silver_searcher {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/ggreer/the_silver_searcher ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" ekalinin/Dockerfile.vim {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/ekalinin/Dockerfile.vim ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" junegunn/fzf {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/junegunn/fzf ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" junegunn/fzf.vim {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/junegunn/fzf.vim ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" " [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
-
-" [[B]Commits] Customize the options used by 'git log':
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" [Tags] Command to generate tags file
-" let g:fzf_tags_command = 'ctags -R'
-" see ~/.ctags
-
-" [Commands] --expect expression for directly executing the command
-let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-" }}}
-
-" BurntSushi/ripgrep {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/BurntSushi/ripgrep ~
+" ~ https://github.com/preservim/nerdtree ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/Xuyuanp/nerdtree-git-plugin ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself
+let g:NERDTreeGitStatusShowIgnored = 1 " a heavy feature may cost much more time
+let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heavy feature too
+let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tiagofumo/vim-nerdtree-syntax-highlight ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
-" mcsween/indent_python {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/vim-scripts/indentpython.vim ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" tpope/vim-characterize {{{
+" PACKAGES: input {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/tpope/vim-characterize ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
-" tpope/vim-commentary {{{
+" PACKAGES: programming {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/ludovicchabant/vim-gutentags ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/vim-scripts/taglist.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent> <leader>is :TlistToggle<cr>
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-endwise ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/tpope/vim-commentary ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~
- " }}}
 
-" tpope/vim-dotenv {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tpope/vim-dotenv ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~
-" }}}
-"
-" tpope/vim-dadbod {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tpope/vim-dadbod ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~
-" }}}
-"
-"  tpope/vim-surround {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tpope/vim-surround ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~
-" }}}
-
-" tpope/vim-vinegar {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tpope/vim-vinegar ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" ycm-core/YouCompleteMe {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/ycm-core/YouCompleteMe ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" create .ycm_extra_conf.py file at the root of your project with the following contents:
-
-" def Settings(**kwargs):
-"     return {
-"         "interpreter_path": "/path/to/virtual/environment/python"
-"     }
-" }}}
-
-" dense-analysis/ale {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/dense-analysis/ale ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -471,168 +673,57 @@ let g:ale_sign_warning = ''
 :nnoremap [A :ALEFirst
 
 " :help ale-lint-other-machines
-" }}}
 
-" preservim/nerdtree {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/preservim/nerdtree ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" autocmd VimEnter * NERDTree | wincmd p " Start NERDTree and put the cursor back in the other window
-
-" Start NERDTree when Vim is started without file arguments
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Open the existing NERDTree on each new tab
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-
-" Exit Vim if NERDTree is the only window remaining in the only tab
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Function to open the file or NERDTree or netrw
-"   Returns: 1 if either file explorer was opened; otherwise, 0
-function! s:OpenFileOrExplorer(...)
-    if a:0 == 0 || a:1 == ''
-        NERDTree
-    elseif filereadable(a:1)
-        execute 'edit '.a:1
-        return 0
-    elseif a:1 =~? '^\(scp\|ftp\)://' " Add other protocols as needed
-        execute 'Vexplore '.a:1
-    elseif isdirectory(a:1)
-        execute 'NERDTree '.a:1
-    endif
-    return 1
-endfunction
-
-" Auto commands to handle OS commandline arguments
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc()==1 && !exists('s:std_in') | if <SID>OpenFileOrExplorer(argv()[0]) | wincmd p | enew | wincmd p | endif | endif
-
-" Command to call the OpenFileOrExplorer function.
-command! -n=? -complete=file -bar Edit :call <SID>OpenFileOrExplorer('<args>')
-
-" Command-mode abbreviation to replace the :edit Vim command.
-cnoreabbrev e Edit
-
-" http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
-let NERDTreeHijackNetrw=1
-" }}}
-
-" Xyuyanp/nerdtree-git-plugin {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/Xuyuanp/nerdtree-git-plugin ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself
-let g:NERDTreeGitStatusShowIgnored = 1 " a heavy feature may cost much more time
-let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heavy feature too
-let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
-" }}}
-
-" ryanoasis/vim-devicons {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/ryanoasis/vim-devicons ~
+" ~ https://github.com/ycm-core/YouCompleteMe ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" create .ycm_extra_conf.py file at the root of your project with the following contents:
+" def Settings(**kwargs):
+"     return {
+"         "interpreter_path": "/path/to/virtual/environment/python"
+"     }
+
 " }}}
 
-" tiagofumo/vim-nerdtree-syntax-highlight {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tiagofumo/vim-nerdtree-syntax-highlight ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
+" PACKAGES: language {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/othree/csscomplete.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" tmhedberg/SimplyFold {{{
-" python specific-folding
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tmhedberg/SimpylFold ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/hail2u/vim-css3-syntax ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" valloric/MatchTagAlways {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/Valloric/MatchTagAlways ~
-" ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
+" ~ https://github.com/ekalinin/Dockerfile.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" mattn/emmet-vim {{{
-" ######################################
-" # https://github.com/mattn/emmet-vim #
-" ######################################
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/vim-scripts/indentpython.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/jmcantrell/vim-virtualenv ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/mattn/emmet-vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " https://raw.githubusercontent.com/mattn/emmet-vim/master/TUTORIAL
 let g:user_emmet_leader_key='<C-Z>'
 " }}}
 
-" kshenoy/vim-signature {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/kshenoy/vim-signature ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" PACKAGES: database {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-dadbod ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/lifepillar/pgsql.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
-" vim-airline/vim-airline {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/vim-airline/vim-airline ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-" unicode symbols
-let g:airline#extensions#tabline#left_sep = '»'
-let g:airline#extensions#tabline#left_sep = '▶'
-let g:airline#extensions#tabline#right_sep = '«'
-let g:airline#extensions#tabline#right_sep = '◀'
-
-" airline symbols
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tabs = 1
-
-" }}}
-
-" vim-airline/vim-airline-themes {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/vim-airline/vim-airline-themes ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" let g:airline_theme='<theme>'
-" }}}
-
-" airblade/vimgitgutter {{{
+" PACKAGES: git {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/airblade/vim-gitgutter ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -645,22 +736,25 @@ let g:gitgutter_set_sign_backgrounds = 1
 " let g:gitgutter_sign_removed_first_line = '^^'
 " let g:gitgutter_sign_removed_above_and_below = '{'
 " let g:gitgutter_sign_modified_removed = 'ww'
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-fugitive ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/junegunn/gv.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
-" bling/vim-bufferline {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/bling/vim-bufferline ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
-" PACKAGES {{{
+" PACKAGES: help & tags {{{
 " load all plugins now
 " plugins need to be added to runtimepath before helptags can be generated
 packloadall
 " load all of the helptags now, after plugins have been loaded
 " all messages and errors will be ignored
-silent! helptags ++t all
+silent! helptags ++t ALL
 
 let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
 " }}}
-
