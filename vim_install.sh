@@ -8,15 +8,22 @@ sudo apt-get install --assume-yes \
 
 # grep -P '^~ https://github.com/' ~/.vim/vimrc | sed 's/["~ ]//g'
 
-pack_dir="${HOME}/.vim/pack"
+vim_dir="${HOME}/.vim"
+color_dir="${pack_dir}/colors"
+pack_dir="${vim_dir}/pack"
 plugin_dir="${pack_dir}/git-plugins"
 
-mkdir -p "${plugin_dir}"
-cd "${plugin_dir}"
+mkdir -p "${color_dir}"
+cd "${color_dir}"
+
+git clone https://github.com/vim-scripts/xoria256.vim
 
 git clone https://github.com/lifepillar/vim-gruvbox8
 
 git clone https://github.com/rafi/awesome-vim-colorschemes
+
+mkdir -p "${plugin_dir}"
+cd "${plugin_dir}"
 
 git clone https://github.com/ryanoasis/vim-devicons
 
