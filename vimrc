@@ -481,7 +481,7 @@ let g:sandwich#recipes += [
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " activate the :Farundo command
 let g:far#enable_undo=1
-" source for files
+" use ripgrep to source for files
 let g:far#source='rg'
 " glob mode to use
 let g:far#glob_mode='rg'
@@ -493,6 +493,8 @@ let g:far#glob_mode='rg'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/BurntSushi/ripgrep ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" use ripgrep to source for the :grep command
+set grepprg='rg\ --vimgrep\ --smartcase\ --follow'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/junegunn/fzf ~
