@@ -120,6 +120,7 @@ set whichwrap=b,s ",<,>,[,] " WHICH right/left keys may move to the next/prev WR
 
 " FOLDING {{{
 set foldlevel=0 " FOLDS with a higher LEVEL will be closed.
+set foldcolumn=12 " show open and closed folds
 " set foldtext=gitgutter#fold#is_changed()
 augroup filetype_vim
     autocmd!
@@ -374,6 +375,15 @@ let g:tmux_navigator_disable_when_zoomed = 1
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/edkolev/tmuxline.vim ~ mi serve?
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: undo {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/simnalamburt/vim-mundo ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Enable persistent undo so that undo history persists across vim sessions
+set undofile
+set undodir=~/.vim/undo
 " }}}
 
 " PACKAGES: folding {{{
@@ -777,3 +787,4 @@ silent! helptags ++t ALL
 
 let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
 " }}}
+
