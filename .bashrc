@@ -1,3 +1,8 @@
+# ~~~~~~~~~~~~~~~~~~~
+# ~ this is for git ~
+# ~~~~~~~~~~~~~~~~~~~
+export EDITOR=vim
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~ set BASH line editing in vi mode ~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -24,6 +29,24 @@ then
   POWERLINE_BASH_SELECT=1
   . /usr/share/powerline/bindings/bash/powerline.sh
 fi
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~ promptline activation ~~~~~~~~~~~~~~~~~~~~~
+# ~ https://github.com/edkolev/promptline.vim ~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# if [ -f ~/.promptline.sh ]
+# then
+#   . ~/.promptline.sh
+# fi
+
+# ~~~~~~~~~~~~~~~
+# ~ fzf.devicon ~
+# ~~~~~~~~~~~~~~~
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 
 # ~~~~~~~~~~~~~~
 # ~ activate fzf
