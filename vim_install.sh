@@ -83,6 +83,8 @@ if [ -d "$HOME/.cargo/bin" ] ; then
 fi
 EOS
 
+sudo apt install cargo
+cargo install devicon-lookup
 git clone https://github.com/coreyja/fzf.devicon.vim
 
 git clone https://github.com/junegunn/fzf.vim
