@@ -25,6 +25,8 @@ git clone https://github.com/rafi/awesome-vim-colorschemes
 mkdir -p "${plugin_dir}"
 cd "${plugin_dir}"
 
+git clone https://github.com/simnalamburt/vim-mundo 
+
 git clone https://github.com/frazrepo/vim-rainbow
 
 git clone https://github.com/ryanoasis/vim-devicons
