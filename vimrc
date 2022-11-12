@@ -384,7 +384,7 @@ let g:tmux_navigator_disable_when_zoomed = 1
 " Enable persistent undo so that undo history persists across vim sessions
 set undofile
 set undodir=~/.vim/undo
-nnoremap <Leader>m :MundoToggle<CR>
+nnoremap <Leader>u :MundoToggle<CR>
 " }}}
 
 " PACKAGES: folding {{{
