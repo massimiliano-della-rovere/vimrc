@@ -518,6 +518,10 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/coreyja/fzf.devicon.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
 " PACKAGES: netrw & nerdtree {{{
