@@ -67,15 +67,15 @@ git clone https://github.com/roman/golden-ratio
 
 git clone https://github.com/brooth/far.vim
 
-sudo apt install silversearcher-ag
+sudo apt install --assume-yes silversearcher-ag
 git clone https://github.com/ggreer/the_silver_searcher
 
-sudo apt install ripgrep
+sudo apt install --assume-yes ripgrep
 git clone https://github.com/BurntSushi/ripgrep
 
 git clone https://github.com/junegunn/fzf
 
-sudo apt install cargo
+sudo apt install --assume-yes cargo
 cargo install devicon-lookup --force
 [ -n "`grep 'PATH="$HOME/.cargo/bin:$PATH"' $HOME/.profile`" ] && cat << EOS >> $HOME/.profile
 if [ -d "$HOME/.cargo/bin" ] ; then
