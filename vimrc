@@ -114,6 +114,7 @@ augroup END
 
 augroup tab_python
 	autocmd!
+	autocmd BufNewFile,BufRead *.py setlocal foldmethod=syntax
 	autocmd BufNewFile,BufRead *.py set colorcolumn=80 " draw a vertical line to visualize textwidth
 	autocmd BufNewFile,BufRead *.py set textwidth=80 " linewidth is 80 chars, we respect you PEP8
 	autocmd BufNewFile,BufRead *.py set expandtab " EXPAND TABs into spaces
@@ -136,10 +137,11 @@ augroup END
 
 augroup tab_javascript
 	autocmd!
-	autocmd BufNewFile,BufRead *.html *.js *.css set expandtab " EXPAND TABs into spaces
-	autocmd BufNewFile,BufRead *.html *.js *.css set shiftwidth=2 " SHIFT commands WIDTH in columns
-	autocmd BufNewFile,BufRead *.html *.js *.css set softtabstop=2 " how may spaces are insert when <Tab> is pressed
-	autocmd BufNewFile,BufRead *.html *.js *.css set tabstop=2 " number of spaces that a <Tab> in the file counts for
+	autocmd BufNewFile,BufRead *.html *.js *.css setlocal foldmethod=syntax
+	autocmd BufNewFile,BufRead *.html *.js *.css setlocal expandtab " EXPAND TABs into spaces
+	autocmd BufNewFile,BufRead *.html *.js *.css setlocal shiftwidth=2 " SHIFT commands WIDTH in columns
+	autocmd BufNewFile,BufRead *.html *.js *.css setlocal softtabstop=2 " how may spaces are insert when <Tab> is pressed
+	autocmd BufNewFile,BufRead *.html *.js *.css setlocal tabstop=2 " number of spaces that a <Tab> in the file counts for
 augroup END
 
 augroup tab_xml
@@ -147,7 +149,7 @@ augroup tab_xml
 " 	autocmd BufNewFile,BufRead *.xml *.cda *.xslt set filetype=xml
 	let g:xml_syntax_folding=1
 	autocmd FileType xml setlocal foldmethod=syntax
-	autocmd FileType xml syntax on
+	autocmd FileType xml syntax on " I do not understand why the previous line need this line to activate
 	autocmd FileType xml highlight LineNr term=bold cterm=bold gui=bold
 	autocmd FileType xml highlight CursorLineNr term=bold cterm=bold gui=bold
 " 	autocmd FileType xml highlight CursorLine term=underline cterm=inverse gui=inverse
@@ -284,10 +286,6 @@ abbr @@ massimiliano.dellarovere@gmail.com
 " }}}
 
 " PACKAGES: interface and popups {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/mg979/vim-visual-multi ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/frazrepo/vim-rainbow ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -682,6 +680,10 @@ let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
 " }}}
 
 " PACKAGES: input {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/mg979/vim-visual-multi ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/tpope/vim-characterize ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
