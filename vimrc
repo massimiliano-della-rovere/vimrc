@@ -284,6 +284,10 @@ abbr @@ massimiliano.dellarovere@gmail.com
 " }}}
 
 " PACKAGES: interface and popups {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/mg979/vim-visual-multi ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/frazrepo/vim-rainbow ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -347,28 +351,35 @@ let g:airline#extensions#tabline#show_tabs = 1
 " ~ https://github.com/vim-airline/vim-airline-themes ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " let g:airline_theme='<theme>'
+" }}}
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tpope/vim-dotenv ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" PACKAGES: yank, regs, repeat {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/machakann/vim-highlightedyank ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if !exists('##TextYankPost')
+  nmap y <Plug>(highlightedyank)
+  xmap y <Plug>(highlightedyank)
+  omap y <Plug>(highlightedyank)
+endif
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/junegunn/vim-peekaboo ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" PACKAGES: misc {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/mg979/vim-visual-multi ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/dhruvasagar/vim-open-url ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/tpope/vim-repeat ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: integration with external programs {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-dotenv ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/dhruvasagar/vim-open-url ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/edkolev/promptline.vim ~
@@ -790,7 +801,6 @@ let g:gitgutter_set_sign_backgrounds = 1
 " ~ https://github.com/junegunn/gv.vim ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
-
 " }}}
 
 " PACKAGES: help & tags {{{
@@ -803,4 +813,3 @@ silent! helptags ++t ALL
 
 let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
 " }}}
-
