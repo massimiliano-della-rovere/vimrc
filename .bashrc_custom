@@ -26,11 +26,6 @@ export EDITOR=vim
 # https://catonmat.net/bash-vi-editing-mode-cheat-sheet
 set -o vi
 
-# ~~~~~~~~~~~~~~~
-# ~ docker/tcwa ~
-# ~~~~~~~~~~~~~~~
-export DEVELOPMENT=1
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~ 'history' command output will contain timestamps ~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
