@@ -1,6 +1,6 @@
-# ~~~~~~~~~~~~~~
-# exa settings ~
-# ~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~
+# ~ exa settings ~
+# ~~~~~~~~~~~~~~~~
 export TIME_STYLE="long-iso"
 export EXA_COLORS="da=1;35"
 
