@@ -1,3 +1,14 @@
+# ~~~~~~~~~~~~~~~~~~
+# ~ rust local dir ~
+# ~~~~~~~~~~~~~~~~~~
+export PATH=$PATH:~/.cargo/bin
+
+# ~~~~~~~~~~~~~~~~
+# ~ go local dir ~
+# ~~~~~~~~~~~~~~~~
+export GOPATH=~/.go
+export PATH=$PATH:~/.go/bin
+
 # ~~~~~~~~~~~~~~~~~~~
 # ~ this is for git ~
 # ~~~~~~~~~~~~~~~~~~~
@@ -8,6 +19,11 @@ export EDITOR=vim
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # https://catonmat.net/bash-vi-editing-mode-cheat-sheet
 set -o vi
+
+# ~~~~~~~~~~~~~~~
+# ~ docker/tcwa ~
+# ~~~~~~~~~~~~~~~
+export DEVELOPMENT=1
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~ 'history' command output will contain timestamps ~
@@ -34,15 +50,6 @@ fi
 #   . ~/.promptline.sh
 # fi
 
-# ~~~~~~~~~~~~~~~
-# ~ fzf.devicon ~
-# ~~~~~~~~~~~~~~~
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-
 # ~~~~~~~~~~~~~~
 # ~ activate fzf
 # ~~~~~~~~~~~~~~
@@ -52,3 +59,6 @@ then
 	export FZF_DEFAULT_COMMAND='rg --files'
 	export FZF_DEFAULT_OPTS='-m'
 fi
+
+
+neofetch
