@@ -61,8 +61,7 @@ set wildmode=full " WILD menu MODE: always open
 " }}}
 
 " AUTOCOMPLETION {{{
-" set omnifunc=syntaxcomplete#Complete " enable OMNIcompletion with complete syntax FUNCTION
-set omnifunc=ale#completion#OmniFunc " use the A.L.E. plugin for ^X^O
+set omnifunc=syntaxcomplete#Complete " enable OMNIcompletion with complete syntax FUNCTION
 " }}}
 
 " ROW NUMBERING {{{
@@ -735,25 +734,56 @@ nnoremap <silent> <leader>is :TlistToggle<cr>
 " ~ https://github.com/dense-analysis/ale ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if IsPluginLoaded("ale")
-	" let g:ale_sign_column_always = 1 " always show sign (error/warning) column
-	" let g:airline#extensions#ale#enabled = 1 " show errors or warnings in my statusline
-	" let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
-	" 
-	" " unicode
+	set omnifunc=ale#completion#OmniFunc " use the A.L.E. plugin for ^X^O
+	let g:ale_completion_enabled = 1 " ALE own completion
+	let g:ale_sign_column_always = 1 " always show sign (error/warning) column
+	let g:airline#extensions#ale#enabled = 1 " show errors or warnings in my statusline
+	let g:ale_set_balloons = 1 " hover information also show up when you move the mouse over a symbol in a buffer
+	let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+	let g:ale_completion_symbols = {
+		\ 'text': '',
+		\ 'method': '',
+		\ 'function': '',
+		\ 'constructor': '',
+		\ 'field': '',
+		\ 'variable': '',
+		\ 'class': '',
+		\ 'interface': '',
+		\ 'module': '',
+		\ 'property': '',
+		\ 'unit': 'unit',
+		\ 'value': 'val',
+		\ 'enum': '',
+		\ 'keyword': 'keyword',
+		\ 'snippet': '',
+		\ 'color': 'color',
+		\ 'file': '',
+		\ 'reference': 'ref',
+		\ 'folder': '',
+		\ 'enum member': '',
+		\ 'constant': '',
+		\ 'struct': '',
+		\ 'event': 'event',
+		\ 'operator': '',
+		\ 'type_parameter': 'type param',
+		\ '<default>': 'v'
+		\ }
+	
+	" unicode
 	" let g:ale_sign_error = '»»'
 	" let g:ale_sign_warning = '--'
 	" 
-	" " nerdfonts
-	" " let g:ale_sign_error = ''
-	" let g:ale_sign_error = ''
-	" " let g:ale_sign_warning = ''
-	" let g:ale_sign_warning = ''
-	" 
-	" " navigate errors/warning
-	" :nnoremap ]a :ALENextWrap<CR>
-	" :nnoremap [a :ALEPreviousWrap<CR>
-	" :nnoremap ]A :ALELast
-	" :nnoremap [A :ALEFirst
+	" nerdfonts
+	" let g:ale_sign_error = ''
+	let g:ale_sign_error = ''
+	" let g:ale_sign_warning = ''
+	let g:ale_sign_warning = ''
+	"
+	" navigate errors/warning
+	:nnoremap ]a :ALENextWrap<CR>
+	:nnoremap [a :ALEPreviousWrap<CR>
+	:nnoremap ]A :ALELast
+	:nnoremap [A :ALEFirst
 	
 	" :help ale-lint-other-machines
 	if IsPluginLoaded("coc.nvim")
