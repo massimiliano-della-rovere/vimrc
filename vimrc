@@ -279,6 +279,16 @@ function! IsPluginLoaded(plugin_name)
 	return len(filter(split(execute("scriptnames"), "\n"), 'v:val =~ "start/' . a:plugin_name . '"'))
 endfunction
 
+" PACKAGES: environment, sesssions, projects {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/leafOfTree/vim-project ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-dotenv ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
 " PACKAGES: colors {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/lifepillar/vim-gruvbox8 ~
@@ -389,10 +399,6 @@ endif
 " }}}
 
 " PACKAGES: integration with external programs {{{
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tpope/vim-dotenv ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/dhruvasagar/vim-open-url ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
