@@ -317,7 +317,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#coc#enabled = 1
+" let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#fzf#enabled = 1
 let g:airline#extensions#gutentags#enabled = 1
@@ -797,6 +797,8 @@ endif
 " https://github.com/neoclide/coc.nvim/wiki
 
 if IsPluginLoaded("coc.nvim")
+	let g:airline#extensions#coc#enabled = 1
+	
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 	" delays and poor user experience.
 	set updatetime=300
