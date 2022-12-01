@@ -1,3 +1,4 @@
+
 " https://github.com/massimiliano-della-rovere/vimrc/edit/main/vimrc
 
 " GENERAL {{{
@@ -274,11 +275,18 @@ abbr @@ massimiliano.dellarovere@gmail.com
 
 " PACKAGES: configuration {{{
 
-function! IsPluginLoaded(plugin_name)
-	return len(filter(split(execute("scriptnames"), "\n"), 'v:val =~ "start/' . a:plugin_name . '"'))
+function! IsPluginInstalled(plugin_name, mode='start')
+	if index(['start', 'opt'], a:mode) == -1
+		throw 'invalid mode: ' . a:mode
+	endif
+	return isdirectory(expand('~/.vim/pack/git-plugins/' . a:mode . '/' . a:plugin_name))
 endfunction
 
-" PACKAGES: environment, sesssions, projects {{{
+function! IsPluginLoaded(plugin_name)
+	return len(filter(split(execute('scriptnames'), '\n'), 'v:val =~ "start/' . a:plugin_name . '"'))
+endfunction
+
+" PACKAGES: environment, sessions, projects {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/leafOfTree/vim-project ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -733,7 +741,7 @@ nnoremap <silent> <leader>is :TlistToggle<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/dense-analysis/ale ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if IsPluginLoaded("ale")
+if IsPluginInstalled("ale")
 	set omnifunc=ale#completion#OmniFunc " use the A.L.E. plugin for ^X^O
 	let g:ale_completion_enabled = 1 " ALE own completion
 	let g:ale_sign_column_always = 1 " always show sign (error/warning) column
@@ -786,7 +794,7 @@ if IsPluginLoaded("ale")
 	:nnoremap [A :ALEFirst
 	
 	" :help ale-lint-other-machines
-	if IsPluginLoaded("coc.nvim")
+	if IsPluginInstalled("coc.nvim")
 		let g:ale_disable_lsp = 1
 	endif
 endif
@@ -796,7 +804,7 @@ endif
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " https://github.com/neoclide/coc.nvim/wiki
 
-if IsPluginLoaded("coc.nvim")
+if IsPluginInstalled("coc.nvim")
 	let g:airline#extensions#coc#enabled = 1
 	
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -950,7 +958,7 @@ endif
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/ycm-core/YouCompleteMe ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if IsPluginLoaded("YouCompleteMe")
+if IsPluginInstalled("YouCompleteMe")
 	" create .ycm_extra_conf.py file at the root of your project with the following contents:
 	" def Settings(**kwargs):
 	"     return {
@@ -1032,4 +1040,3 @@ silent! helptags ++t ALL
 
 let g:airline#extensions#ale#enabled = 1 " integrate a.l.e. errors in the airline statusline
 " }}}
-
