@@ -119,6 +119,8 @@ git submodule update --init --recursive
 python3 install.py --all
 cd ..
 
+git clone https://github.com/sheerun/vim-polyglot
+
 git clone https://github.com/othree/csscomplete.vim
 
 git clone https://github.com/hail2u/vim-css3-syntax
