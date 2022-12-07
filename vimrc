@@ -113,13 +113,13 @@ augroup END
 
 augroup tab_bash
 	autocmd!
-	autocmd BufNewFile,BufRead *.bash *.sh setlocal foldmethod=indent
-	autocmd BufNewFile,BufRead *.bash *.sh setlocal colorcolumn=80 " draw a vertical line to visualize textwidth
-	autocmd BufNewFile,BufRead *.bash *.sh setlocal textwidth=80 " linewidth is 80 chars, we respect you PEP8
-	autocmd BufNewFile,BufRead *.bash *.sh setlocal expandtab " EXPAND TABs into spaces
-	autocmd BufNewFile,BufRead *.bash *.sh setlocal shiftwidth=4 " SHIFT commands WIDTH in columns
-	autocmd BufNewFile,BufRead *.bash *.sh setlocal softtabstop=4 " how may spaces are insert when <Tab> is pressed
-	autocmd BufNewFile,BufRead *.bash *.sh setlocal tabstop=4 " number of spaces that a <Tab> in the file counts for
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal foldmethod=indent
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal colorcolumn=80 " draw a vertical line to visualize textwidth
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal textwidth=80 " linewidth is 80 chars, we respect you PEP8
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal expandtab " EXPAND TABs into spaces
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal shiftwidth=4 " SHIFT commands WIDTH in columns
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal softtabstop=4 " how may spaces are insert when <Tab> is pressed
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal tabstop=4 " number of spaces that a <Tab> in the file counts for
 augroup END
 
 augroup tab_python
