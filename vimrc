@@ -1,4 +1,3 @@
-
 " https://github.com/massimiliano-della-rovere/vimrc/edit/main/vimrc
 
 " GENERAL {{{
@@ -111,6 +110,17 @@ augroup END
 	set smartindent " try to SMARTly detect when and where to INDENT new text
 	set smarttab " when on, a <Tab> in front of a line inserts blanks according to 'shiftwidth
 			" when off, a <Tab> always inserts blanks according to 'tabstop' or 'softtabstop'
+
+augroup tab_bash
+	autocmd!
+	autocmd BufNewFile,BufRead *.bash *.sh setlocal foldmethod=indent
+	autocmd BufNewFile,BufRead *.bash *.sh setlocal colorcolumn=80 " draw a vertical line to visualize textwidth
+	autocmd BufNewFile,BufRead *.bash *.sh setlocal textwidth=80 " linewidth is 80 chars, we respect you PEP8
+	autocmd BufNewFile,BufRead *.bash *.sh setlocal expandtab " EXPAND TABs into spaces
+	autocmd BufNewFile,BufRead *.bash *.sh setlocal shiftwidth=4 " SHIFT commands WIDTH in columns
+	autocmd BufNewFile,BufRead *.bash *.sh setlocal softtabstop=4 " how may spaces are insert when <Tab> is pressed
+	autocmd BufNewFile,BufRead *.bash *.sh setlocal tabstop=4 " number of spaces that a <Tab> in the file counts for
+augroup END
 
 augroup tab_python
 	autocmd!
@@ -994,6 +1004,10 @@ endif
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " https://raw.githubusercontent.com/mattn/emmet-vim/master/TUTORIAL
 let g:user_emmet_leader_key='<C-Z>'
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/sheerun/vim-polyglot ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " }}}
 
 " PACKAGES: database {{{
