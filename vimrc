@@ -48,6 +48,11 @@ set fileencoding=utf-8 " default ENCODING for writing a text FILE
 set fileformat=unix " set the textFILE newline FORMAT to <NL> 
 " }}}
 
+" SPEL LANGUAGES {{{
+set spell
+set spelllang=en_us,it,eo
+" }}}
+
 " ERROR BELLS {{{
 set errorbells " BELL as ERROR message
 set visualbell " use a VISUAL BELL instead of beeping
@@ -113,7 +118,7 @@ augroup END
 
 augroup tab_bash
 	autocmd!
-	autocmd BufNewFile,BufRead *.bash,*.sh setlocal foldmethod=indent
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal foldmethod=syntax
 	autocmd BufNewFile,BufRead *.bash,*.sh setlocal colorcolumn=80 " draw a vertical line to visualize textwidth
 	autocmd BufNewFile,BufRead *.bash,*.sh setlocal textwidth=80 " linewidth is 80 chars, we respect you PEP8
 	autocmd BufNewFile,BufRead *.bash,*.sh setlocal expandtab " EXPAND TABs into spaces
@@ -147,11 +152,11 @@ augroup END
 
 augroup tab_javascript
 	autocmd!
-	autocmd BufNewFile,BufRead *.html *.js *.css setlocal foldmethod=syntax
-	autocmd BufNewFile,BufRead *.html *.js *.css setlocal expandtab " EXPAND TABs into spaces
-	autocmd BufNewFile,BufRead *.html *.js *.css setlocal shiftwidth=2 " SHIFT commands WIDTH in columns
-	autocmd BufNewFile,BufRead *.html *.js *.css setlocal softtabstop=2 " how may spaces are insert when <Tab> is pressed
-	autocmd BufNewFile,BufRead *.html *.js *.css setlocal tabstop=2 " number of spaces that a <Tab> in the file counts for
+	autocmd BufNewFile,BufRead *.html,*.js,*.css setlocal foldmethod=syntax
+	autocmd BufNewFile,BufRead *.html,*.js,*.css setlocal expandtab " EXPAND TABs into spaces
+	autocmd BufNewFile,BufRead *.html,*.js,*.css setlocal shiftwidth=2 " SHIFT commands WIDTH in columns
+	autocmd BufNewFile,BufRead *.html,*.js,*.css setlocal softtabstop=2 " how may spaces are insert when <Tab> is pressed
+	autocmd BufNewFile,BufRead *.html,*.js,*.css setlocal tabstop=2 " number of spaces that a <Tab> in the file counts for
 augroup END
 
 augroup tab_xml
@@ -807,6 +812,63 @@ if IsPluginInstalled("ale")
 	if IsPluginInstalled("coc.nvim")
 		let g:ale_disable_lsp = 1
 	endif
+
+	let g:ale_linters={
+		\ 'javascript': [
+			\ 'importjs',
+			\ 'prettier',
+			\ 'xo'
+		\ ],
+		\ 'python': [
+			\ 'bandit',
+			\ 'flake8',
+			\ 'jedils',
+			\ 'pycodestyle',
+			\ 'pyflakes',
+			\ 'pylama',
+			\ 'pylint',
+			\ 'pylsp',
+			\ 'vulture'
+		\ ],
+		\ 'sh': [
+			\ 'bashate',
+			\ 'shell',
+			\ 'shellcheck'
+		\ ]
+	\ }
+
+	let g:ale_fixers={
+		\ 'javascript': [
+			\ 'prettier',
+			\ 'remove_trailing_lines',
+			\ 'trim_whitespace',
+			\ 'xo'
+		\ ],
+		\ 'python': [
+			\ 'add_blank_lines_for_python_control_statements',
+			\ 'black',
+			\ 'reorder-python-imports',
+			\ 'remove_trailing_lines',
+			\ 'ruff',
+			\ 'trim_whitespace',
+			\ 'yapf'
+		\ ],
+		\ 'sh': [
+			\ 'remove_trailing_lines',
+			\ 'shfmt',
+			\ 'trim_whitespace'
+		\ ],
+		\ 'vim': [
+			\ 'remove_trailing_lines',
+			\ 'trim_whitespace'
+		\ ]
+	\ }
+
+" https://docs.openstack.org/bashate/latest/man/bashate.html
+" https://docs.openstack.org/bashate/latest/readme.html#currently-supported-checks
+" let g:ale_sh_bashate_options = "--verbose --ignore E006"
+let g:ale_sh_bashate_options = "--verbose"
+
 endif
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1003,7 +1065,8 @@ endif
 " ~ https://github.com/mattn/emmet-vim ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " https://raw.githubusercontent.com/mattn/emmet-vim/master/TUTORIAL
-let g:user_emmet_leader_key='<C-Z>'
+" let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_leader_key='<Tab>'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/sheerun/vim-polyglot ~
@@ -1024,7 +1087,7 @@ let g:user_emmet_leader_key='<C-Z>'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/airblade/vim-gitgutter ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set signcolumn=yes
+" set signcolumn = yes
 let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_set_sign_backgrounds = 1
 " let g:gitgutter_sign_added = 'xx'
