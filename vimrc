@@ -48,7 +48,7 @@ set fileencoding=utf-8 " default ENCODING for writing a text FILE
 set fileformat=unix " set the textFILE newline FORMAT to <NL> 
 " }}}
 
-" SPEL LANGUAGES {{{
+" SPELL LANGUAGES {{{
 set spell
 set spelllang=en_us,it,eo
 " }}}
@@ -118,6 +118,7 @@ augroup END
 
 augroup tab_bash
 	autocmd!
+	autocmd BufNewFile,BufRead *.bash,*.sh setlocal filetype=sh
 	autocmd BufNewFile,BufRead *.bash,*.sh setlocal foldmethod=syntax
 	autocmd BufNewFile,BufRead *.bash,*.sh setlocal colorcolumn=80 " draw a vertical line to visualize textwidth
 	autocmd BufNewFile,BufRead *.bash,*.sh setlocal textwidth=80 " linewidth is 80 chars, we respect you PEP8
