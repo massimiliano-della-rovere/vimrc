@@ -1097,6 +1097,16 @@ let g:gitgutter_set_sign_backgrounds = 1
 " let g:gitgutter_sign_removed_first_line = '^^'
 " let g:gitgutter_sign_removed_above_and_below = '{'
 " let g:gitgutter_sign_modified_removed = 'ww'
+nnoremap <Leader>hd <Plug>(GitGutterDiffOrig)
+nnoremap <Leader>hu <Plug>(GitGutterUndoHunk)
+nnoremap <Leader>hp <Plug>(GitGutterPreviewHunk)
+nnoremap <Leader>hs <Plug>(GitGutterStageHunk)
+nnoremap [h <Plug>(GitGutterPrevHunk)
+nnoremap ]h <Plug>(GitGutterNextHunk)
+omap ic <Plug>(GitGutterTextObjectInnerPending)
+omap ac <Plug>(GitGutterTextObjectOuterPending)
+xmap ic <Plug>(GitGutterTextObjectInnerVisual)
+xmap ac <Plug>(GitGutterTextObjectOuterVisual)
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/tpope/vim-fugitive ~
