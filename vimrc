@@ -141,13 +141,13 @@ augroup tab_python
 " 	packadd! indentpython.vim
 	let python_highlight_all=1
 	" python with virtualenv support
-	python3 << EOF
+python3 << EOF
 import os
-import sys
+import subprocess
 if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_script = os.path.join(project_base_dir, 'bin/activate')
+    subprocess.run(f" bash {activate_script}", shell=True)
 EOF
 augroup END
 
@@ -561,6 +561,10 @@ let g:sandwich#recipes += [
 " }}}
 
 " PACKAGES: find, replace, grep {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/markonm/traces.vim ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/brooth/far.vim ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
