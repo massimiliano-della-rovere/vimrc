@@ -129,6 +129,8 @@ git clone https://github.com/ekalinin/Dockerfile.vim
 
 git clone https://github.com/vim-scripts/indentpython.vim
 
+git clone https://github.com/markonm/traces.vim
+
 git clone https://github.com/jmcantrell/vim-virtualenv
 
 git clone https://github.com/mattn/emmet-vim
