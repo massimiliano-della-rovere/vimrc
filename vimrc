@@ -49,7 +49,8 @@ set fileformat=unix " set the textFILE newline FORMAT to <NL>
 " }}}
 
 " SPELL LANGUAGES {{{
-set spell
+" set spell
+set nospell
 set spelllang=en_us,it,eo
 " }}}
 
@@ -100,6 +101,7 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker " FOLDing METHOD (logic)
 augroup END
 nnoremap <space> za
+vnoremap <space> zf
 " }}}
 
 " EXTRA SPACES {{{
@@ -744,6 +746,7 @@ let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/ludovicchabant/vim-gutentags ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:gutentags_project_root = ['LICENSE', 'README.md']
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/vim-scripts/taglist.vim ~
