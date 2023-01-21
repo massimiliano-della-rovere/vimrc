@@ -821,6 +821,12 @@ if IsPluginInstalled("ale")
 		let g:ale_disable_lsp = 1
 	endif
 
+	" disabled linters already contained in pylama:
+	"		\ 'flake8',
+	"		\ 'pycodestyle',
+	"		\ 'pyflakes',
+	"		\ 'pylint',
+	"		\ 'vulture',
 	let g:ale_linters={
 		\ 'javascript': [
 			\ 'importjs',
@@ -829,14 +835,9 @@ if IsPluginInstalled("ale")
 		\ ],
 		\ 'python': [
 			\ 'bandit',
-			\ 'flake8',
 			\ 'jedils',
-			\ 'pycodestyle',
-			\ 'pyflakes',
 			\ 'pylama',
-			\ 'pylint',
-			\ 'pylsp',
-			\ 'vulture'
+			\ 'pylsp'
 		\ ],
 		\ 'sh': [
 			\ 'bashate',
