@@ -877,6 +877,7 @@ if IsPluginInstalled("ale")
 " https://docs.openstack.org/bashate/latest/readme.html#currently-supported-checks
 " let g:ale_sh_bashate_options = "--verbose --ignore E006"
 let g:ale_sh_bashate_options = "--verbose"
+let g:ale_sh_shfmt_options = "-i 4 -bn -ci -sr -kp"
 
 endif
 
