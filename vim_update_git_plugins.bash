@@ -46,6 +46,7 @@ done
 
 
 for plugin_dir in "$plugins_path"/*; do
-    echo -e "${ansi_bold}[${plugin_dir##*/}]${ansi_normal}"
-    echo -e "$(git -C "$plugin_dir" pull)\n"
+    echo -en "${ansi_bold}[${plugin_dir##*/}]${ansi_normal} - "
+    echo -e  "$(git -C "$plugin_dir" config --get remote.origin.url)"
+    echo -e  "$(git -C "$plugin_dir" pull)\n"
 done
