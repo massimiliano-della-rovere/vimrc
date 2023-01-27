@@ -16,7 +16,8 @@ plugin_dir="${pack_dir}/git-plugins/start"
 mkdir -p "${color_dir}"
 cd "${color_dir}"
 
-git clone https://github.com/vim-scripts/xoria256.vim
+git clone https://github.com/vim-scripts/xoria256.vim xoria256
+ln -s xoria256/colors/xoria256.vim
 
 git clone https://github.com/lifepillar/vim-gruvbox8
 
