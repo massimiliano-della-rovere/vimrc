@@ -146,4 +146,3 @@ git clone https://github.com/tpope/vim-fugitive
 git clone https://github.com/junegunn/gv.vim
 
 git clone https://github.com/puremourning/vimspector
-
