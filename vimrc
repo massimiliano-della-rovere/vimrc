@@ -733,6 +733,31 @@ let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
 " }}}
 
 " PACKAGES: input {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/puremourning/vimspector ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:vimspector_enable_mappings = 'HUMAN'
+" Key	Mapping	Function
+" F3	<Plug>VimspectorStop	Stop debugging.
+" F4	<Plug>VimspectorRestart	Restart debugging with the same configuration.
+" F5	<Plug>VimspectorContinue	When debugging, continue. Otherwise start debugging.
+" F6	<Plug>VimspectorPause	Pause debuggee.
+" F8	<Plug>VimspectorAddFunctionBreakpoint	Add a function breakpoint for the expression under cursor
+" F9	<Plug>VimspectorToggleBreakpoint	Toggle line breakpoint on the current line.
+" F10	<Plug>VimspectorStepOver	Step Over
+" F11	<Plug>VimspectorStepInto	Step Into
+" F12	<Plug>VimspectorStepOut	Step out of current function scope
+" <leader>F8	<Plug>VimspectorRunToCursor	Run to Cursor
+" <leader>F9	<Plug>VimspectorToggleConditionalBreakpoint	Toggle conditional line breakpoint or logpoint on the current line.
+nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+nmap <LocalLeader>B     <Plug>VimspectorBreakpoints
+nmap <LocalLeader>D     <Plug>VimspectorDisassemble
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/mg979/vim-visual-multi ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
