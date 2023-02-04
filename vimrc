@@ -70,6 +70,65 @@ set wildmode=full " WILD menu MODE: always open
 set omnifunc=syntaxcomplete#Complete " enable OMNIcompletion with complete syntax FUNCTION
 " }}}
 
+" TAB AND ENTER IN POPUP MENU {{{
+" taken from https://github.com/w0rp/vim/blob/master/autoload/startup/keybinds.vim
+
+function! SmartESC()
+    " Make pressing ESC close the completion menu.
+    if pumvisible()
+        return "\<C-e>"
+    endif
+
+    return "\<ESC>"
+endfunction
+
+function! SmartEnter()
+    " Make pressing Enter accept a completion entry.
+    if pumvisible()
+        return "\<C-y>"
+    endif
+
+    return "\<CR>"
+endfunction
+
+function! SmartTab() abort
+    " Use Tab and Shift+Tab for either completion or SnipMate.
+    if pumvisible()
+        let l:keys = "\<C-n>"
+
+        if get(b:, 'ale_last_completion_count') is 1
+            let l:keys .= "\<Left>\<Right>"
+        endif
+
+        return l:keys
+    endif
+
+    " return snipMate#TriggerSnippet()
+endfunction
+
+function! SmartShiftTab() abort
+    if pumvisible()
+        return "\<C-p>"
+    endif
+
+    " return snipMate#BackwardsSnippet()
+endfunction
+
+function! SmartInsertCompletion() abort
+    if pumvisible()
+        return "\<C-n>"
+    endif
+
+    return "\<C-c>a\<C-n>"
+endfunction
+
+inoremap <silent> <CR> <C-R>=SmartEnter()<CR>
+inoremap <silent> <ESC> <C-R>=SmartESC()<CR>
+inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
+inoremap <silent> <S-Tab> <C-R>=SmartShiftTab()<CR>
+inoremap <silent> <C-n> <C-R>=SmartInsertCompletion()<CR>
+" }}}
+
 " ROW NUMBERING {{{
 set number " show row NUMBERs on the left side of the screen
 set numberwidth=4 " allocate 4-columns WIDTH for the row numbers
@@ -229,6 +288,7 @@ set nrformats=alpha,bin,octal,hex " NumbeRFORMATS recogninzed by CTRL-X and CTRL
 set pastetoggle=<Leader>p
 " set selectmode=cmd,key,mouse " how SELECT MODE can be activated
 nnoremap Y y$
+nnoremap <C-y> <cmd>%yank "+<CR>
 " }}}
 
 " TOKEN MATCHING {{{
@@ -278,6 +338,10 @@ set backspace=
 autocmd BufWritePost .vimrc source %
 nnoremap <leader>ev :edit ~/.vim/vimrc<cr>
 nnoremap <leader>sv :source ~/.vim/vimrc<cr>
+" }}}
+
+" FORMAT OPTIONS {{{
+set formatoptions+=1n " How automatic text formatting is done
 " }}}
 
 " HELP {{{
@@ -340,6 +404,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/vim-airline/vim-airline ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " let g:airline#extensions#ale#enabled = 1
@@ -356,40 +421,70 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+" " unicode symbols
+"   let g:airline_left_sep = '»'
+"   let g:airline_left_sep = '▶'
+"   let g:airline_right_sep = '«'
+"   let g:airline_right_sep = '◀'
+"   let g:airline_symbols.colnr = ' ㏇:'
+"   let g:airline_symbols.colnr = ' ℅:'
+"   let g:airline_symbols.crypt = '🔒'
+"   let g:airline_symbols.linenr = '☰'
+"   let g:airline_symbols.linenr = ' ␊:'
+"   let g:airline_symbols.linenr = ' ␤:'
+"   let g:airline_symbols.linenr = '¶'
+"   let g:airline_symbols.maxlinenr = ''
+"   let g:airline_symbols.maxlinenr = '㏑'
+"   let g:airline_symbols.branch = '⎇'
+"   let g:airline_symbols.paste = 'ρ'
+"   let g:airline_symbols.paste = 'Þ'
+"   let g:airline_symbols.paste = '∥'
+"   let g:airline_symbols.spell = 'Ꞩ'
+"   let g:airline_symbols.notexists = 'Ɇ'
+"   let g:airline_symbols.notexists = '∄'
+"   let g:airline_symbols.whitespace = 'Ξ'
 
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+"   " powerline symbols
+"   let g:airline_left_sep = ''
+"   let g:airline_left_alt_sep = ''
+"   let g:airline_right_sep = ''
+"   let g:airline_right_alt_sep = ''
+"   let g:airline_symbols.branch = ''
+"   let g:airline_symbols.colnr = ' ℅:'
+"   let g:airline_symbols.readonly = ''
+"   let g:airline_symbols.linenr = ' :'
+"   let g:airline_symbols.maxlinenr = '☰ '
+"   let g:airline_symbols.dirty='⚡'
 
-" unicode symbols
-let g:airline#extensions#tabline#left_sep = '»'
-let g:airline#extensions#tabline#left_sep = '▶'
-let g:airline#extensions#tabline#right_sep = '«'
-let g:airline#extensions#tabline#right_sep = '◀'
+"   " old vim-powerline symbols
+"   let g:airline_left_sep = '⮀'
+"   let g:airline_left_alt_sep = '⮁'
+"   let g:airline_right_sep = '⮂'
+"   let g:airline_right_alt_sep = '⮃'
+"   let g:airline_symbols.branch = '⭠'
+"   let g:airline_symbols.readonly = '⭤'
+"   let g:airline_symbols.linenr = '⭡'
 
-" airline symbols
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
+" " airline symbols
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = ''
+
+" " unicode symbols
+" let g:airline#extensions#tabline#left_sep = '»'
+" let g:airline#extensions#tabline#left_sep = '▶'
+" let g:airline#extensions#tabline#right_sep = '«'
+" let g:airline#extensions#tabline#right_sep = '◀'
+
+" " airline symbols
+" let g:airline#extensions#tabline#left_sep = ''
+" let g:airline#extensions#tabline#left_alt_sep = ''
+" let g:airline#extensions#tabline#right_sep = ''
+" let g:airline#extensions#tabline#right_alt_sep = ''
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -733,6 +828,16 @@ let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
 " }}}
 
 " PACKAGES: input {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/mg979/vim-visual-multi ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-characterize ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" }}}
+
+" PACKAGES: programming {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/puremourning/vimspector ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -758,20 +863,11 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 nmap <LocalLeader>B     <Plug>VimspectorBreakpoints
 nmap <LocalLeader>D     <Plug>VimspectorDisassemble
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/mg979/vim-visual-multi ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~ https://github.com/tpope/vim-characterize ~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" }}}
-
-" PACKAGES: programming {{{
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/ludovicchabant/vim-gutentags ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:gutentags_project_root = ['LICENSE', 'README.md']
+let g:gutentags_ctags_tagfile = 'tags'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/vim-scripts/taglist.vim ~
@@ -852,7 +948,13 @@ if IsPluginInstalled("ale")
 	"		\ 'pyflakes',
 	"		\ 'pylint',
 	"		\ 'vulture',
+"			\ 'pylsp',
+"			\ 'mypy',
+"			\ 'pyright',
 	let g:ale_linters={
+		\ 'dockerfile': [
+			\ 'dockerfile_linter'
+		\ ],
 		\ 'javascript': [
 			\ 'importjs',
 			\ 'prettier',
@@ -861,8 +963,8 @@ if IsPluginInstalled("ale")
 		\ 'python': [
 			\ 'bandit',
 			\ 'jedils',
-			\ 'pylama',
-			\ 'pylsp'
+			\ 'pycln',
+			\ 'pylama'
 		\ ],
 		\ 'sh': [
 			\ 'bashate',
@@ -881,6 +983,7 @@ if IsPluginInstalled("ale")
 		\ 'python': [
 			\ 'add_blank_lines_for_python_control_statements',
 			\ 'black',
+			\ 'isort',
 			\ 'reorder-python-imports',
 			\ 'remove_trailing_lines',
 			\ 'ruff',
