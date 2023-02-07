@@ -9,12 +9,12 @@ sudo apt-get install --assume-yes \
 # grep -P '^~ https://github.com/' ~/.vim/vimrc | sed 's/["~ ]//g'
 
 vim_dir="${HOME}/.vim"
-color_dir="${vim_dir}/colors"
+colors_dir="${vim_dir}/colors"
 pack_dir="${vim_dir}/pack"
 plugins_dir="${pack_dir}/git-plugins/start"
 
-mkdir -p "${color_dir}"
-cd "${color_dir}"
+mkdir -p "${colors_dir}"
+cd "${colors_dir}"
 
 git clone https://github.com/vim-scripts/xoria256.vim xoria256
 ln -s xoria256/colors/xoria256.vim
