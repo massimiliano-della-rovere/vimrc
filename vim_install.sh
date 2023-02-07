@@ -17,7 +17,7 @@ mkdir -p "${colors_dir}"
 cd "${colors_dir}"
 
 git clone https://github.com/vim-scripts/xoria256.vim xoria256
-ln -s xoria256/colors/xoria256.vim
+ln -s xoria256/colors/xoria256.vim xoria256.vim
 
 git clone https://github.com/lifepillar/vim-gruvbox8
 
