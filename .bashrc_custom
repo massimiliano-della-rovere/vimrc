@@ -4,6 +4,11 @@
 export TIME_STYLE="long-iso"
 export EXA_COLORS="da=1;35"
 
+# ~~~~~~~~~~~~~~~~~~~~~
+# ~ local executables ~
+# ~~~~~~~~~~~~~~~~~~~~~
+export PATH=~/bin:~/.local/bin:$PATH
+
 # ~~~~~~~~~~~~~~~~~~
 # ~ rust local dir ~
 # ~~~~~~~~~~~~~~~~~~
@@ -34,12 +39,11 @@ export HISTTIMEFORMAT="%F %T "
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 # ~ powerline activation ~
 # ~~~~~~~~~~~~~~~~~~~~~~~~
-if [ -f `which powerline-daemon` ]
-then
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  . /usr/share/powerline/bindings/bash/powerline.sh
+if [ -f "$(which powerline-daemon)" ]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,11 +59,20 @@ fi
 # ~ activate fzf
 # ~~~~~~~~~~~~~~
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-if type rg &> /dev/null
-then
-	export FZF_DEFAULT_COMMAND='rg --files'
-	export FZF_DEFAULT_OPTS='-m'
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files'
+    export FZF_DEFAULT_OPTS='-m'
 fi
 
+# ~~~~~~~~~~~~~~~~~~~
+# ~ activate pyenv ~
+# ~~~~~~~~~~~~~~~~~~
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-neofetch
+# ~~~~~~~~~~~~~~
+# ~ Umlet home ~
+# ~~~~~~~~~~~~~~
+export UMLET_HOME="${HOME}/Programmi/Umlet"
