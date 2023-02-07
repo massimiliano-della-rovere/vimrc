@@ -30,7 +30,7 @@ git clone https://github.com/leafOfTree/vim-project
 
 git clone https://github.com/machakann/vim-highlightedyank
 
-git clone https://github.com/simnalamburt/vim-mundo 
+git clone https://github.com/simnalamburt/vim-mundo
 
 git clone https://github.com/frazrepo/vim-rainbow
 
