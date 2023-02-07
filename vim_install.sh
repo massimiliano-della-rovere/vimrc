@@ -11,7 +11,7 @@ sudo apt-get install --assume-yes \
 vim_dir="${HOME}/.vim"
 color_dir="${vim_dir}/colors"
 pack_dir="${vim_dir}/pack"
-plugin_dir="${pack_dir}/git-plugins/start"
+plugins_dir="${pack_dir}/git-plugins/start"
 
 mkdir -p "${color_dir}"
 cd "${color_dir}"
@@ -23,8 +23,8 @@ git clone https://github.com/lifepillar/vim-gruvbox8
 
 git clone https://github.com/rafi/awesome-vim-colorschemes
 
-mkdir -p "${plugin_dir}"
-cd "${plugin_dir}"
+mkdir -p "${plugins_dir}"
+cd "${plugins_dir}"
 
 git clone https://github.com/leafOfTree/vim-project
 
