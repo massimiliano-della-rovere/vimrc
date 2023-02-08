@@ -104,6 +104,7 @@ function! SmartTab() abort
     endif
 
     " return snipMate#TriggerSnippet()
+    return "\<Tab>"
 endfunction
 
 function! SmartShiftTab() abort
@@ -112,6 +113,7 @@ function! SmartShiftTab() abort
     endif
 
     " return snipMate#BackwardsSnippet()
+    return "\<S-Tab>"
 endfunction
 
 function! SmartInsertCompletion() abort
@@ -841,27 +843,40 @@ let g:NERDTreeGitStatusShowClean = 1 " show the 'clean' indicator
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/puremourning/vimspector ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:vimspector_enable_mappings = 'HUMAN'
-" Key	Mapping	Function
-" F3	<Plug>VimspectorStop	Stop debugging.
-" F4	<Plug>VimspectorRestart	Restart debugging with the same configuration.
-" F5	<Plug>VimspectorContinue	When debugging, continue. Otherwise start debugging.
-" F6	<Plug>VimspectorPause	Pause debuggee.
-" F8	<Plug>VimspectorAddFunctionBreakpoint	Add a function breakpoint for the expression under cursor
-" F9	<Plug>VimspectorToggleBreakpoint	Toggle line breakpoint on the current line.
-" F10	<Plug>VimspectorStepOver	Step Over
-" F11	<Plug>VimspectorStepInto	Step Into
-" F12	<Plug>VimspectorStepOut	Step out of current function scope
-" <leader>F8	<Plug>VimspectorRunToCursor	Run to Cursor
-" <leader>F9	<Plug>VimspectorToggleConditionalBreakpoint	Toggle conditional line breakpoint or logpoint on the current line.
-nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
-nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
-" for normal mode - the word under the cursor
-nmap <Leader>di <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <Leader>di <Plug>VimspectorBalloonEval
-nmap <LocalLeader>B     <Plug>VimspectorBreakpoints
-nmap <LocalLeader>D     <Plug>VimspectorDisassemble
+" let g:vimspector_enable_mappings = 'HUMAN'
+" Key Mapping Function
+" nmap <F2> <Plug>VimspectorToggleConditionalBreakpoint " Toggle conditional line breakpoint or logpoint on the current line.
+" nmap <F3> <Plug>VimspectorStop " Stop debugging.
+" nmap <F4> <Plug>VimspectorRestart " Restart debugging with the same configuration.
+" nmap <F5> <Plug>VimspectorContinue " When debugging, continue. Otherwise start debugging.
+" nmap <F6> <Plug>VimspectorPause " Pause debuggee.
+" nmap <F7> <Plug>VimspectorRunToCursor " Run to Cursor
+" nmap <F8> <Plug>VimspectorAddFunctionBreakpoint " Add a function breakpoint for the expression under cursor
+" nmap <F9> <Plug>VimspectorToggleBreakpoint " Toggle line breakpoint on the current line.
+" nmap <F10> <Plug>VimspectorStepOver " Step Over
+" nmap <F11> <Plug>VimspectorStepInto " Step Into
+" nmap <F12> <Plug>VimspectorStepOut " Step out of current function scope
+" nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+" nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+" " for normal mode - the word under the cursor
+" nmap <Leader>di <Plug>VimspectorBalloonEval
+" " for visual mode, the visually selected text
+" xmap <Leader>di <Plug>VimspectorBalloonEval
+" nmap <LocalLeader>B <Plug>VimspectorBreakpoints
+" nmap <LocalLeader>D <Plug>VimspectorDisassemble
+" nmap <Leader>db <Plug>VimspectorBreakpoints
+
+nnoremap <Leader>dd :call vimspector#Launch()<CR>
+nnoremap <Leader>de :call vimspector#Reset()<CR>
+nnoremap <Leader>dc :call vimspector#Continue()<CR>
+
+nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
+
+nmap <Leader>dk <Plug>VimspectorRestart
+nmap <Leader>dh <Plug>VimspectorStepOut
+nmap <Leader>dl <Plug>VimspectorStepInto
+nmap <Leader>dj <Plug>VimspectorStepOver
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/ludovicchabant/vim-gutentags ~
