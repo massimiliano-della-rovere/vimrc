@@ -541,6 +541,10 @@ endif
 " }}}
 
 " PACKAGES: integration with external programs {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/tpope/vim-unimpaired ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/dhruvasagar/vim-open-url ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -653,7 +657,7 @@ let g:sandwich#recipes += [
   \    'input': ['{']
   \ },
   \ {
-  \    'buns': ['\[\s*', '\s*\]'], 
+  \    'buns': ['\[\s*', '\s*\]'],
   \    'nesting': 1,
   \    'regex': 1,
   \    'match_syntax': 1,
@@ -922,9 +926,16 @@ nnoremap <silent> <leader>is :TlistToggle<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if IsPluginInstalled("ale")
   set omnifunc=ale#completion#OmniFunc " use the A.L.E. plugin for ^X^O
+  let g:ale_lsp_suggestions = 1 " show hints/suggestions from LSP servers or tsserver, in addition to warnings and errors
+  let g:ale_floating_preview = 1 " Vim with |popupwin| will use a floating window for ale's preview window
   let g:ale_completion_enabled = 1 " ALE own completion
   let g:ale_sign_column_always = 1 " always show sign (error/warning) column
-  let g:airline#extensions#ale#enabled = 1 " show errors or warnings in my statusline
+  let g:ale_change_sign_column_color = 1 " set different highlights for the sign column itself when ALE reports problems with a file
+  let g:ale_completion_autoimport = 1 " ALE will try to automatically import completion results from external modules
+  let g:ale_fix_on_save = 1 " ALE will fix files when they are saved
+  if IsPluginInstalled("airline")
+    let g:airline#extensions#ale#enabled = 1 " show errors or warnings in my statusline
+  endif
   let g:ale_set_balloons = 1 " hover information also show up when you move the mouse over a symbol in a buffer
   let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
   let g:ale_completion_symbols = {
@@ -959,13 +970,13 @@ if IsPluginInstalled("ale")
   " unicode
   " let g:ale_sign_error = '»»'
   " let g:ale_sign_warning = '--'
-  " 
+
   " nerdfonts
   " let g:ale_sign_error = ''
   let g:ale_sign_error = ''
   " let g:ale_sign_warning = ''
   let g:ale_sign_warning = ''
-  "
+
   " navigate errors/warning
   :nnoremap ]a :ALENextWrap<CR>
   :nnoremap [a :ALEPreviousWrap<CR>
