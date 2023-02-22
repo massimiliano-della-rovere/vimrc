@@ -42,6 +42,8 @@ git clone https://github.com/vim-airline/vim-airline-themes
 
 git clone https://github.com/tpope/vim-dotenv
 
+git clone https://github.com/tpope/vim-unimpaired
+
 git clone https://github.com/junegunn/vim-peekaboo
 
 git clone https://github.com/mg979/vim-visual-multi
