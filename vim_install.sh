@@ -122,6 +122,10 @@ git clone https://github.com/dense-analysis/ale
 # python3 install.py --all
 # cd ..
 
+# git clone --branch release https://github.com/neoclide/coc.nvim.git --depth=1
+# https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#install-extensions-for-programming-languages-you-use-daily
+# https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#add-some-configuration
+
 git clone https://github.com/sheerun/vim-polyglot
 
 git clone https://github.com/othree/csscomplete.vim
