@@ -115,12 +115,12 @@ git clone https://github.com/tpope/vim-commentary
 
 git clone https://github.com/dense-analysis/ale
 
-sudo apt install --assume-yes build-essential cmake python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm universal-ctags
-git clone https://github.com/ycm-core/YouCompleteMe
-cd YouCompleteMe
-git submodule update --init --recursive
-python3 install.py --all
-cd ..
+# sudo apt install --assume-yes build-essential cmake python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm universal-ctags
+# git clone https://github.com/ycm-core/YouCompleteMe
+# cd YouCompleteMe
+# git submodule update --init --recursive
+# python3 install.py --all
+# cd ..
 
 git clone https://github.com/sheerun/vim-polyglot
 
