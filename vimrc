@@ -158,7 +158,7 @@ set whichwrap=b,s ",<,>,[,] " WHICH right/left keys may move to the next/prev WR
 
 " FOLDING {{{
 set foldlevel=0 " FOLDS with a higher LEVEL will be closed.
-set foldcolumn=12 " show open and closed folds
+set foldcolumn=9 " show open and closed folds
 " set foldtext=gitgutter#fold#is_changed()
 augroup filetype_vim
     autocmd!
@@ -258,7 +258,9 @@ augroup END
 
 " COLORS {{{
 " set termguicolors
-set antialias " if this file will ever be used by gvim, ANTIALIAS the font
+if ! has('nvim')
+  set antialias " if this file will ever be used by gvim, ANTIALIAS the font
+endif
 
 augroup color_scheme
   " https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
@@ -412,6 +414,12 @@ endfunction
 " }}}
 
 " PACKAGES: interface and popups {{{
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~ https://github.com/liuchengxu/vim-which-key ~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" nnoremap <silent> <leader> :WhichKey '<Backslash>'<CR>
+" nnoremap <silent> <NUL> :WhichKey '<CTRL-Space>'<CR>
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " ~ https://github.com/frazrepo/vim-rainbow ~
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -997,6 +1005,7 @@ if IsPluginInstalled("ale")
 "      \ 'pylsp',
 "      \ 'mypy',
 "      \ 'pyright',
+      " \ 'jedils',
 "
 "      \ 'rustc'
   let g:ale_linters={
@@ -1009,8 +1018,8 @@ if IsPluginInstalled("ale")
       \ 'xo'
     \ ],
     \ 'python': [
+      \ 'pyright',
       \ 'bandit',
-      \ 'jedils',
       \ 'pycln',
       \ 'pylama'
     \ ],
