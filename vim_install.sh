@@ -155,3 +155,10 @@ git clone https://github.com/tpope/vim-fugitive
 git clone https://github.com/junegunn/gv.vim
 
 git clone https://github.com/puremourning/vimspector
+
+for plugin_dir in *; do 
+  cd $plugin_dir
+  echo $plugin_dir
+  git config pull.rebase false
+  cd ..
+done
