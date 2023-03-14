@@ -134,6 +134,8 @@ git clone https://github.com/othree/csscomplete.vim
 
 git clone https://github.com/hail2u/vim-css3-syntax
 
+git clone https://github.com/preservim/vim-markdown
+
 git clone https://github.com/ekalinin/Dockerfile.vim
 
 git clone https://github.com/vim-scripts/indentpython.vim
