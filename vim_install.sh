@@ -158,6 +158,10 @@ git clone https://github.com/junegunn/gv.vim
 
 git clone https://github.com/puremourning/vimspector
 
+git clone https://github.com/kana/vim-textobj-user
+
+git clone https://github.com/kana/vim-textobj-entire
+
 for plugin_dir in *; do 
   cd $plugin_dir
   echo $plugin_dir
